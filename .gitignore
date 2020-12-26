@@ -31,6 +31,7 @@ var/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+!buildozer.spec
 
 # Installer logs
 pip-log.txt
@@ -153,3 +154,4 @@ credits.py
 vk_config.v2.json
 bin/
 .buildozer/
+TRANS.TBL
