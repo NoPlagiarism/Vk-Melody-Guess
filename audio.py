@@ -1,5 +1,6 @@
 from vk_api.audio import *
 from vk_api.audio import VkAudio as _VkAudio
+from bs4 import BeautifulSoup
 
 
 class VkAudio(_VkAudio):
@@ -66,3 +67,10 @@ class VkAudio(_VkAudio):
         :param access_hash: ACCESS_HASH альбома
         """
         return list(self.get_ids_iter(owner_id, album_id, access_hash))
+
+    def get_len_user_audio(self, owner_id=None):
+        if owner_id is None:
+            owner_id = self.user_id
+        raw_res = self._vk.http.get(f"https://vk.com/id{owner_id}")
+        soup = BeautifulSoup(raw_res, 'html.parser')
+        return int(soup.find("div", id="profile_audios").select('.header_count')[0].string)

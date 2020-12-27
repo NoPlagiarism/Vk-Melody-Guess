@@ -155,3 +155,4 @@ vk_config.v2.json
 bin/
 .buildozer/
 TRANS.TBL
+*.psd
