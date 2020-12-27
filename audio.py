@@ -77,6 +77,6 @@ class VkAudio(_VkAudio):
         profile_audios = soup.find("div", id="profile_audios")
         
         if profile_audios != None:
-            return int(soup.find("div", id="profile_audios").select('.header_count')[0].string)
+            return int(profile_audios.select('.header_count')[0].string)
 
         return 0
