@@ -21,7 +21,10 @@ ScreenManager:
     track_field: track_field
     author_field: author_field
     check_btn: check_btn
+    play_btn: play_btn
+    pause_btn: pause_btn
     MDIconButton:
+        id: play_btn
         icon: "play"
         pos_hint: {"center_x": .1,"center_y": .9}
     UnMDSlider:
@@ -37,6 +40,7 @@ ScreenManager:
         cursor_disabled_image: "assets/cursor.png"
         value: 1
     MDIconButton:
+        id: pause_btn
         icon: "pause"
         pos_hint: {"center_x": .9,"center_y": .9}
     MDLabel:
@@ -130,6 +134,8 @@ class GameScreen(MDScreen):
     track_field = ObjectProperty(None)
     author_field = ObjectProperty(None)
     check_btn = ObjectProperty(None)
+    play_btn = ObjectProperty(None)
+    pause_btn = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(GameScreen, self).__init__(**kwargs)
