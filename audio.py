@@ -1,4 +1,4 @@
-from vk_api.audio import *
+from vk_api.audio import scrap_ids, TRACKS_PER_ALBUM_PAGE, TRACKS_PER_USER_PAGE, AccessDenied
 from vk_api.audio import VkAudio as _VkAudio
 from bs4 import BeautifulSoup
 
