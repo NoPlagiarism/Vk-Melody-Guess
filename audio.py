@@ -2,7 +2,6 @@ from vk_api.audio import scrap_ids, TRACKS_PER_ALBUM_PAGE, TRACKS_PER_USER_PAGE,
 from vk_api.audio import VkAudio as _VkAudio
 from bs4 import BeautifulSoup
 
-
 class VkAudio(_VkAudio):
     def __init__(self, vk, convert_m3u8_links=True):
         super().__init__(vk, convert_m3u8_links)
@@ -71,6 +70,13 @@ class VkAudio(_VkAudio):
     def get_len_user_audio(self, owner_id=None):
         if owner_id is None:
             owner_id = self.user_id
+
         raw_res = self._vk.http.get(f"https://vk.com/id{owner_id}")
-        soup = BeautifulSoup(raw_res, 'html.parser')
-        return int(soup.find("div", id="profile_audios").select('.header_count')[0].string)
+        soup = BeautifulSoup(raw_res.text, 'html.parser')
+
+        profile_audios = soup.find("div", id="profile_audios")
+        
+        if profile_audios != None:
+            return int(soup.find("div", id="profile_audios").select('.header_count')[0].string)
+
+        return 0
