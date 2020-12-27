@@ -61,7 +61,8 @@ ScreenManager:
     MDRaisedButton:
         id: check_btn
         text: "Проверить"
-        size_hint: (.4, .07)
+        size_hint: (0.75, 0.08)
+        font_size: 17
         pos_hint: {"center_x": .5,"center_y": .3}
 <ResultScreen>:
     id: result
@@ -112,7 +113,8 @@ ScreenManager:
     MDRaisedButton:
         id: back_btn
         text: "Вернуться в меню"
-        size_hint: (0.35, 0.1)
+        size_hint: (0.75, 0.08)
+        font_size: 17
         pos_hint: {"center_x": 0.5, "center_y": 0.1}
 """
 
@@ -171,31 +173,3 @@ class OverScreen(MDScreen):
         if score > 300:
             score = 300
         self.score_color = (*hsv_to_rgb(score/360, 1, 1), 1)
-
-
-if __name__ == '__main__':
-    class DemoApp(MDApp):
-        def build(self):
-            Builder.load_string(game_helper)
-            self.sm = ScreenManager()
-            self.gs = GameScreen()
-            self.gs.init_binds(self.check_song)
-            self.rs = ResultScreen()
-            self.go = OverScreen()
-            self.go.back_btn.bind(on_press=lambda x: self.sm.switch_to(self.gs))
-            self.sm.add_widget(self.gs)
-            self.sm.add_widget(self.rs)
-            self.sm.add_widget(self.go)
-            return self.sm
-
-        def check_song(self, _):
-            self.sm.current = "result"
-            self.rs("Сто баксов", "Дикая деревня", (bool(random()), bool(random())))
-            t = threading.Thread(target=self.wait_and_change)
-            t.start()
-
-        def wait_and_change(self):
-            sleep(3)
-            self.go(randint(0, 360))
-            self.sm.current = 'over'
-    DemoApp().run()

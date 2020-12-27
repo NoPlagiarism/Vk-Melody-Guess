@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
-from kivy.uix.image import AsyncImage
+from kivy.uix.image import AsyncImage, Image
 
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -10,12 +10,6 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.chip import MDChip
 
 Window.size = (350, 700)
-
-# Имя + фамилия пользователя, нужно будет доставать с VK_API:
-usernameData = "Иван Иванов"
-
-# URL на аватарку:
-avatarUrl = "https://dmitrovipoteka.ru/wp-content/uploads/2016/09/default-user-img.jpg"
 
 # Соотношение по Y-оси с которой будет вести отчет блок управления (кнопки: Начать играть, Выход, Об игре):
 controlPanelBlockStart = 0.40
@@ -29,12 +23,12 @@ class StartScreen(Screen):
 
         self.username = MDLabel()
 
-        self.username.text = usernameData
+        self.username.text = "Не определено"
         self.username.pos_hint = {"center_y": informationBlockStart}
         self.username.font_size = 20
         self.username.halign = "center"
 
-        self.avatar = AsyncImage(source = avatarUrl)
+        self.avatar = AsyncImage(source = "https://vk.com/images/camera_200.png?ava=1")
 
         self.avatar.size_hint = [0.35, 0.35]
         self.avatar.pos_hint = {"center_x": 0.5, "center_y": informationBlockStart - 0.135}
