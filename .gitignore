@@ -156,3 +156,4 @@ bin/
 .buildozer/
 TRANS.TBL
 *.psd
+cache/
