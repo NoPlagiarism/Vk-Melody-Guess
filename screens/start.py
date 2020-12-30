@@ -9,14 +9,13 @@ from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.label import MDLabel
 from kivymd.uix.chip import MDChip
 
+Window.size = (350, 700)
 
-# Соотношение по Y-оси с которой будет вести отчет блок управления
-#(кнопки: Начать играть, Выход, Об игре):
+# Соотношение по Y-оси с которой будет вести отчет блок управления (кнопки: Начать играть, Выход, Об игре):
 controlPanelBlockStart = 0.40
 
 # Соотношение по Y-оси с которой будет вести отчет блок с информацией (Аватарка, ФИ):
 informationBlockStart = 0.75
-
 
 class StartScreen(Screen):
     def __init__(self, **kwargs):
@@ -29,7 +28,7 @@ class StartScreen(Screen):
         self.username.font_size = 20
         self.username.halign = "center"
 
-        self.avatar = AsyncImage(source="https://vk.com/images/camera_200.png?ava=1")
+        self.avatar = AsyncImage(source = "https://vk.com/images/camera_200.png?ava=1")
 
         self.avatar.size_hint = [0.35, 0.35]
         self.avatar.pos_hint = {"center_x": 0.5, "center_y": informationBlockStart - 0.135}
